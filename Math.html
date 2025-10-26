@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Tax</title>
+  </head>
+  <body>
+    <input type="number" id="item" name="item" />
+    <button onclick="addTax(50)">Add Tax</button>
+    <script>
+      const TaxAmount = 0.05;
+
+      function addTax() {
+        let value = document.getElementById("item").value;
+        let total = value * (1 + TaxAmount);
+        let newTotal = Math.floor(total);
+        let Fraction = Math.round(total * 100) % 100;
+        if (Fraction < 10) {
+          Fraction = "0" + Fraction;
+        }
+
+        total = newTotal + "." + Fraction;
+        alert("Total: $" + total);
+      }
+    </script>
+  </body>
+</html>

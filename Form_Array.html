@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Array</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background-color: #f5f6fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
+
+      form {
+        background: #fff;
+        padding: 25px 30px;
+        margin-top: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h3 {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      }
+
+      form div {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 6px;
+      }
+
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+      }
+
+      input[type="radio"] {
+        margin-right: 6px;
+      }
+
+      button {
+        width: 100%;
+        background-color: #3498db;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #Display {
+        margin-top: 20px;
+        background-color: #ecf0f1;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 15px;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#">
+      <h3>Form Element</h3>
+      <!-- Full Name -->
+      <div>
+        <label for="FullName">Full Name</label>
+        <input
+          type="text"
+          name="FullName"
+          id="FullName"
+          placeholder="Enter Your Full Name"
+        />
+      </div>
+
+      <!-- Gender -->
+      <div>
+        <label for="Gender">Gender</label>
+        <input type="radio" name="Gender" value="male" /> Male
+        <input type="radio" name="Gender" value="female" /> Female
+      </div>
+
+      <!-- District -->
+      <div>
+        <label for="District">District</label>
+        <select name="District" id="District">
+          <option value="Dhaka">Dhaka</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Barisal">Barisal</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Mymensingh">Mymensingh</option>
+          <option value="Chittagong">Chittagong</option>
+          <option value="Narayanganj">Narayanganj</option>
+        </select>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <label for="Address">Address</label>
+        <textarea
+          name="address"
+          id="Address"
+          placeholder="Enter Your Address"
+        ></textarea>
+      </div>
+
+      <!-- Button -->
+      <div>
+        <button type="button" onclick="formData()">Submit</button>
+      </div>
+    </form>
+
+    <!-- Display -->
+    <div id="Display"></div>
+
+    <script>
+      function formData() {
+        let dataDisplay = "";
+
+        const form = document.forms[0];
+        for (let i = 0; i < form.elements.length; i++) {
+          const element = form.elements[i];
+          const type = element.type;
+          const name = element.name;
+          const value = element.value;
+
+          // Skip button
+          if (type === "button") continue;
+
+          // Handle radio buttons (only checked one)
+          if (type === "radio") {
+            if (element.checked) {
+              dataDisplay += `<b>${name}</b>: ${value}<br>`;
+            }
+            continue;
+          }
+
+          // Handle all other input types, select, textarea
+          if (value.trim() !== "") {
+            dataDisplay += `<b>${name}</b>: ${value}<br>`;
+          }
+        }
+
+
+
+        
+
+        // Display output
+        document.getElementById("Display").innerHTML =
+          dataDisplay || "No data entered!";
+      }
+    </script>
+  </body>
+</html>

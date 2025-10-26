@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./FormData.js"></script>
+    <title>Form Data Two Window</title>
+  </head>
+  <body>
+    <h3>Information Form</h3>
+    <form action="" name="DataForm">
+      <div>
+        <label for="">Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter name" />
+      </div>
+
+      <div>
+        <label for="">Address</label>
+        <textarea name="address" id="address" cols="30" rows="5"></textarea>
+      </div>
+
+      <div>
+        <label for="">Phone</label>
+        <input type="text" name="phone" id="phone" placeholder="Enter phone" />
+      </div>
+
+      <div>
+        <button type="button" onclick="CallWindow()">Submit</button>
+      </div>
+    </form>
+
+    <script>
+      function CallWindow() {
+        let name = document.DataForm.name.value;
+        let address = document.DataForm.address.value;
+        let phone = document.DataForm.phone.value;
+        let formData = new FormData(name, address, phone);
+        let output = formData.DataDisplay();
+        window
+          .open("", "abc", "width=400,height=400, left=500, top=100")
+          .document.write(output);
+      }
+    </script>
+  </body>
+</html>

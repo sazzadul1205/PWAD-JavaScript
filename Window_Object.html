@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Window Object</title>
+  </head>
+  <body>
+    <input type="text" name="name" id="name" placeholder="Enter name" />
+    <input type="number" name="age" id="age" placeholder="Enter height" />
+    <input type="number" name="width" id="width" placeholder="Enter width" />
+    <button onclick="MyWindow()">Click</button>
+
+    <script>
+      function MyWindow() {
+        // Get values at the time of click
+        const name = document.getElementById("name").value.trim();
+        const age = document.getElementById("age").value.trim();
+        const width = document.getElementById("width").value.trim();
+
+        // Open a new popup window
+        const x = window.open("", "abc", "width=400,height=400");
+
+        // Create formatted output
+        let output = `
+          <h1>All User Info</h1>
+          <ul style="font-family: Arial; font-size: 16px;">
+            <li><b>Name:</b> ${name || "N/A"}</li>
+            <li><b>Height:</b> ${age || "N/A"}</li>
+            <li><b>Width:</b> ${width || "N/A"}</li>
+          </ul>
+        `;
+
+        // Write to new window
+        x.document.write(output);
+      }
+    </script>
+  </body>
+</html>

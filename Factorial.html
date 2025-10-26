@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factorial</title>
+  </head>
+  <body>
+    <script>
+      const input = prompt("Enter a number:");
+      const num = Number(input); // convert string to number
+
+      if (!isNaN(num) && num >= 0) {
+        const result = factorial(num);
+        document.write("Factorial of " + num + " is " + result);
+      } else {
+        document.write("Please enter a valid non-negative number.");
+      }
+
+      function factorial(n) {
+        let res = 1; // use let, not const
+        for (let i = 1; i <= n; i++) {
+          res *= i;
+        }
+        return res;
+      }
+    </script>
+  </body>
+</html>

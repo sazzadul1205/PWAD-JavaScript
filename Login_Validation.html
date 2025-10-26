@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <style>
+      /* Page setup */
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #6dd5fa, #2980b9);
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Form container */
+      .login-container {
+        background-color: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 380px;
+      }
+
+      h3 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-size: 1.5em;
+      }
+
+      /* Input groups */
+      div {
+        margin-bottom: 18px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 6px;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+      }
+
+      /* Button styling */
+      button {
+        width: 100%;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      /* Optional subtle animation */
+      .login-container {
+        animation: fadeIn 0.6s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h3>Login Form</h3>
+
+      <form action="" name="loginForm">
+        <!-- Full Name -->
+        <div>
+          <label for="FullName">Full Name</label>
+          <input
+            type="text"
+            name="FullName"
+            id="FullName"
+            placeholder="Enter Your Full Name"
+          />
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label for="Password">Password</label>
+          <input
+            type="password"
+            name="Password"
+            id="Password"
+            placeholder="Enter Password"
+          />
+        </div>
+
+        <!-- Confirm Password -->
+        <div>
+          <label for="ConfirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            name="ConfirmPassword"
+            id="ConfirmPassword"
+            placeholder="Confirm Password"
+          />
+        </div>
+
+        <div>
+          <button type="button" onclick="loginValidation()">Login</button>
+        </div>
+      </form>
+
+      <div style="text-align: center; margin-top: 20px" id="Display"></div>
+    </div>
+
+    <script>
+      function loginValidation() {
+        let FullName = document.loginForm.FullName.value;
+        let Password = document.loginForm.Password.value;
+        let ConfirmPassword = document.loginForm.ConfirmPassword.value;
+
+        let ErrorMessage = "";
+
+        if (FullName.trim() === "") {
+          ErrorMessage += "Please enter your full name.\n";
+        } else if (FullName.length < 6 || FullName.length > 10) {
+          ErrorMessage += "Full name must be between 6 and 10 characters.\n";
+        }
+
+        if (Password.trim() === "") {
+          ErrorMessage += "Please enter your password.\n";
+        } else if (Password.length < 8 || Password.length > 12) {
+          ErrorMessage += "Password must be between 8 and 12 characters.\n";
+        }
+
+        if (ConfirmPassword.trim() === "") {
+          ErrorMessage += "Please confirm your password.\n";
+        } else if (Password !== ConfirmPassword) {
+          ErrorMessage += "Password and Confirm Password do not match.\n";
+        }
+
+        if (ErrorMessage !== "") {
+          alert(ErrorMessage);
+        } else {
+          // alert("Login successful!");
+          // document.write("<p style='color: green;' >Login Successful!</p>");
+          document.getElementById("Display").innerHTML =
+            "<p style='color: green;' >Login Successful!</p>";
+        }
+      }
+    </script>
+  </body>
+</html>

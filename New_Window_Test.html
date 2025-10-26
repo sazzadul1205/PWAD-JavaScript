@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Window Form Check</title>
+  </head>
+  <body>
+    <h3>New Window Form</h3>
+
+    <form name="MyForm" onsubmit="return NewWindow(event)">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter name" />
+      </div>
+
+      <div>
+        <label for="contact">Contact</label>
+        <input
+          type="text"
+          name="contact"
+          id="contact"
+          placeholder="Enter contact"
+        />
+      </div>
+
+      <div>
+        <label for="remarks">Remarks</label>
+        <textarea name="remarks" id="remarks" cols="30" rows="5"></textarea>
+      </div>
+
+      <div>
+        <label>Sex</label>
+        <input type="radio" name="sex" value="Male" /> Male
+        <input type="radio" name="sex" value="Female" /> Female
+      </div>
+
+      <div>
+        <label>Courses</label>
+        <input type="checkbox" name="courses" value="NT" /> NT
+        <input type="checkbox" name="courses" value="IAD" /> IAD
+        <input type="checkbox" name="courses" value="DDD" /> DDD
+        <input type="checkbox" name="courses" value="ESAD" /> ESAD
+      </div>
+
+      <div>
+        <label for="location">Location</label>
+        <select name="location" id="location">
+          <option value="Dhaka">Dhaka</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Barisal">Barisal</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Mymensingh">Mymensingh</option>
+        </select>
+      </div>
+
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+
+    <script>
+      function NewWindow(event) {
+        event.preventDefault();
+        const form = document.forms["MyForm"];
+
+        // Collect form data
+        const name = form.name.value.trim() || "N/A";
+        const contact = form.contact.value.trim() || "N/A";
+        const remarks = form.remarks.value.trim() || "N/A";
+
+        // Find which "Sex" radio button is checked
+        let sex = "N/A"; // default value
+        for (let radio of form.sex) {
+          if (radio.checked) {
+            sex = radio.value;
+            break; // stop once we find the checked one
+          }
+        }
+
+        //   Collect all checked "Courses"
+        let selectedCourses = []; // create an empty list
+        for (let checkbox of form.courses) {
+          if (checkbox.checked) {
+            selectedCourses.push(checkbox.value);
+          }
+        }
+
+        // If no checkbox is selected, show "N/A"
+        if (selectedCourses.length === 0) {
+          selectedCourses = "N/A";
+        } else {
+          selectedCourses = selectedCourses.join(", ");
+        }
+
+        // Get location
+        const location = form.location.value || "N/A";
+
+        // Open new window
+        const x = window.open("", "abc", "width=400,height=400");
+
+        // Write output
+        const output = `
+          <h1>All User Info</h1>
+          <ul style="font-family: Arial; font-size: 16px;">
+            <li><b>Name:</b> ${name}</li>
+            <li><b>Contact:</b> ${contact}</li>
+            <li><b>Remarks:</b> ${remarks}</li>
+            <li><b>Sex:</b> ${sex}</li>
+            <li><b>Courses:</b> ${selectedCourses}</li>
+            <li><b>Location:</b> ${location}</li>
+          </ul>
+          <button onclick="window.close()" 
+            style="padding:8px 15px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer;">
+            Close Window
+          </button>
+        `;
+
+        x.document.write(output);
+        x.document.close();
+      }
+    </script>
+  </body>
+</html>
