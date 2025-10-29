@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Max & Min</title>
+  </head>
+  <body>
+    <script>
+      const input1 = prompt("Enter a number:");
+      const input2 = prompt("Enter a number:");
+      const input3 = prompt("Enter a number:");
+
+      const number1 = Number(input1);
+      const number2 = Number(input2);
+      const number3 = Number(input3);
+
+      const NumberArray = [number1, number2, number3];
+
+      let MaxNumber = NumberArray[0];
+      let MinNumber = NumberArray[0];
+
+      for (let i = 1; i < NumberArray.length; i++) {
+        if (NumberArray[i] > MaxNumber) {
+          MaxNumber = NumberArray[i];
+        }
+        if (NumberArray[i] < MinNumber) {
+          MinNumber = NumberArray[i];
+        }
+      }
+
+      document.write(
+        "Maximum Number is:" +
+          MaxNumber +
+          " " +
+          "Minimum Number is:" +
+          MinNumber
+      );
+    </script>
+  </body>
+</html>
