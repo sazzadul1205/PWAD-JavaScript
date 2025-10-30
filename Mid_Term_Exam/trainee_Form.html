@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trainee Form</title>
+  </head>
+  <body>
+    <h3>Trainee Form</h3>
+
+    <form name="Trainee_Form" onsubmit="onSubmit(event)">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Enter your name" />
+      </div>
+
+      <div>
+        <label for="contact">Contact</label>
+        <input type="text" name="contact" placeholder="Enter your contact" />
+      </div>
+
+      <div>
+        <label for="remarks">Remarks</label>
+        <textarea
+          name="remarks"
+          cols="30"
+          rows="5"
+          placeholder="Enter your remarks"
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="sex">Sex</label>
+        <input type="radio" name="sex" value="male" />Male
+        <input type="radio" name="sex" value="female" />Female
+      </div>
+
+      <div>
+        <label for="courses">Courses</label>
+        <input type="checkbox" name="courses" value="NT" />NT
+        <input type="checkbox" name="courses" value="IAD" />IAD
+        <input type="checkbox" name="courses" value="DDD" />DDD
+        <input type="checkbox" name="courses" value="ESAD" />ESAD
+      </div>
+
+      <div>
+        <label for="location">Location</label>
+        <select name="location">
+          <option value="Dhanmundi">Dhanmundi</option>
+          <option value="Banani">Banani</option>
+          <option value="Mirpur">Mirpur</option>
+          <option value="Gulshan">Gulshan</option>
+          <option value="Uttara">Uttara</option>
+          <option value="Dakshinkhan">Dakshinkhan</option>
+          <option value="Mohammadpur">Mohammadpur</option>
+        </select>
+      </div>
+
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+
+    <div></div>
+
+    <script>
+      function onSubmit(event) {
+        event.preventDefault();
+
+        // Get values
+        const name = document.Trainee_Form.name.value;
+        const contact = document.Trainee_Form.contact.value;
+        const remarks = document.Trainee_Form.remarks.value;
+
+        // Selected sex (normal for loop)
+        let selectedSex = "";
+        const sexRadios = document.Trainee_Form.sex;
+        for (let i = 0; i < sexRadios.length; i++) {
+          if (sexRadios[i].checked) {
+            selectedSex = sexRadios[i].value;
+            break;
+          }
+        }
+
+        // Selected courses (normal for loop)
+        let selectedCourses = [];
+        const courseBoxes = document.Trainee_Form.courses;
+        for (let i = 0; i < courseBoxes.length; i++) {
+          if (courseBoxes[i].checked) {
+            selectedCourses.push(courseBoxes[i].value);
+          }
+        }
+
+        // Selected location
+        const selectedLocation = document.Trainee_Form.location.value;
+
+        // / Open a new window
+        const newWindow = window.open(
+          "",
+          "_blank",
+          "width=500,height=500, left=100, top=100"
+        );
+
+        // Write formatted data into new window
+        newWindow.document.write(`
+
+              <h3>Submitted Information</h3>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Contact:</strong> ${contact}</p>
+              <p><strong>Remarks:</strong> ${remarks}</p>
+              <p><strong>Sex:</strong> ${selectedSex}</p>
+              <p><strong>Courses:</strong> ${selectedCourses.join(", ")}</p>
+              <p><strong>Location:</strong> ${selectedLocation}</p>
+
+        `);
+      }
+    </script>
+  </body>
+</html>

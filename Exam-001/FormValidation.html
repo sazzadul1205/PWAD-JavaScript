@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+  </head>
+  <body>
+    <!-- Form Validation -->
+
+    <form action="" name="MyForm">
+      <!-- Name -->
+      <div>
+        <label for="FullName">Full Name</label>
+        <input
+          type="text"
+          name="FullName"
+          id="FullName"
+          placeholder="Enter Your Full Name"
+        />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="Email">Email</label>
+        <input
+          type="email"
+          name="Email"
+          id="Email"
+          placeholder="Enter Your Email"
+        />
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="Password">Password</label>
+        <input
+          type="password"
+          name="Password"
+          id="Password"
+          placeholder="Enter Your Password"
+        />
+      </div>
+
+      <div>
+        <button type="button" onclick="formValidation()">Submit</button>
+      </div>
+    </form>
+
+    <script>
+      function formValidation() {
+        let name = document.MyForm.FullName.value;
+        let email = document.MyForm.Email.value;
+        let password = document.MyForm.Password.value;
+
+        // --- Name Validation ---
+        if (name.trim() === "") {
+          alert("Please enter your name.");
+          return false;
+        } else if (name.length < 6 || name.length > 10) {
+          alert("Name must be between 6 and 10 characters.");
+          return false;
+        }
+
+        // --- Email Validation ---
+        // Basic email regex: letters, numbers, dots, underscores, and valid domain
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+        if (!emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+
+        // --- Password Validation ---
+        // Minimum 6 characters, at least one uppercase, one lowercase, one digit
+        let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+        if (!passwordRegex.test(password)) {
+          alert(
+            "Password must be at least 6 characters long, include one uppercase, one lowercase letter, and one number."
+          );
+          return false;
+        }
+
+        alert("Form submitted successfully!");
+        document.write(`
+        <p style='color: green;' >Form submitted successfully!</p>
+        <p>Name: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Password: ${password}</p>
+        `);
+        return true;
+      }
+    </script>
+  </body>
+</html>

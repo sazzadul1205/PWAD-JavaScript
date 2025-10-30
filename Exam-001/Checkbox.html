@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+  </head>
+  <body>
+    <h3>Form</h3>
+
+    <form name="Form" onsubmit="onSubmit(event)">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter name" />
+      </div>
+
+      <div>
+        <label for="contact">Contact</label>
+        <input
+          type="text"
+          name="contact"
+          id="contact"
+          placeholder="Enter contact"
+        />
+      </div>
+
+      <div>
+        <label for="remarks">Remarks</label>
+        <textarea name="remarks" id="remarks" cols="30" rows="5"></textarea>
+      </div>
+
+      <div>
+        <label>Sex</label>
+        <input type="radio" name="sex" value="Male" /> Male
+        <input type="radio" name="sex" value="Female" /> Female
+      </div>
+
+      <div>
+        <label>Courses</label>
+        <input type="checkbox" name="courses" value="NT" /> NT
+        <input type="checkbox" name="courses" value="IAD" /> IAD
+        <input type="checkbox" name="courses" value="DDD" /> DDD
+        <input type="checkbox" name="courses" value="ESAD" /> ESAD
+      </div>
+
+      <div>
+        <label for="location">Location</label>
+        <select name="location" id="location">
+          <option value="" selected disabled>Select Location</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Barisal">Barisal</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Mymensingh">Mymensingh</option>
+        </select>
+      </div>
+
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+
+    <script>
+      function onSubmit(e) {
+        const name = document.Form.name.value.trim();
+        const contact = document.Form.contact.value.trim();
+        const remarks = document.Form.remarks.value.trim();
+
+        // Empty check for text fields
+        if (name === "") {
+          alert("Please enter your name.");
+          document.Form.name.focus();
+          return;
+        }
+        if (contact === "") {
+          alert("Please enter your contact.");
+          document.Form.contact.focus();
+          return;
+        }
+        if (remarks === "") {
+          alert("Please enter remarks.");
+          document.Form.remarks.focus();
+          return;
+        }
+
+        // Get selected sex (radio)
+        const sexRadios = document.Form.sex;
+        let selectedSex = "";
+        for (let i = 0; i < sexRadios.length; i++) {
+          if (sexRadios[i].checked) {
+            selectedSex = sexRadios[i].value;
+            break;
+          }
+        }
+        if (selectedSex === "") {
+          alert("Please select your sex.");
+          return;
+        }
+
+        // Get selected courses (checkbox)
+        const courseBoxes = document.Form.courses;
+        let selectedCourses = [];
+        for (let i = 0; i < courseBoxes.length; i++) {
+          if (courseBoxes[i].checked) {
+            selectedCourses.push(courseBoxes[i].value);
+          }
+        }
+        if (selectedCourses.length === 0) {
+          alert("Please select at least one course.");
+          return;
+        }
+
+        // Get selected location (select)
+        const locationSelect = document.Form.location;
+        const selectedLocation = locationSelect.value;
+        if (selectedLocation === "") {
+          alert("Please select a location.");
+          locationSelect.focus();
+          return;
+        }
+
+        // Display results
+        document.write(`
+          <h3>Submitted Information</h3>
+          Name: ${name} <br>
+          Contact: ${contact} <br>
+          Remarks: ${remarks} <br>
+          Sex: ${selectedSex} <br>
+          Courses: ${selectedCourses.join(", ")} <br>
+          Location: ${selectedLocation}
+        `);
+      }
+    </script>
+  </body>
+</html>
